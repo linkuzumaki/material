@@ -1,0 +1,126 @@
+var mongoose = require('mongoose'),
+        Schema = mongoose.Schema;
+
+///*
+var usuario = new Schema({
+  "nombre": "String",
+  "apellido": "String",
+  "celular": "String",
+  "telefono": "Number",
+  "tipo": "String",
+  "contacto": "String",
+  "nContacto": "Number",
+  "oficio": "String",
+  "organización": "String",
+  "correo": "String",
+  "password": "String",
+  "login": "String",
+  "fechaCreacion": "Date",
+  "activo": "Number",
+  "roles": [
+    {
+      "rTipo": "String",
+      "rValor": "String"
+    }
+  ],
+  "fechaModificacion": [
+    {
+      "fFecha": "Date",
+      "fUsuario": "String"
+    }
+  ]
+});
+//*/
+//var usuario = new Schema({});
+module.exports = mongoose.model('Usuario', usuario);
+
+//module.exports = new usuario();
+
+//module.error = module.exports.validateSync();
+
+//module.assert.ok(module.error.error['login']);
+
+/*
+ * var Persona = require('./modelo/persona');
+var Controller = require ('./controller');
+
+module.exports = function(app) {
+
+	// devolver todos los Personas
+	app.get('/api/persona', Controller.getPersona);
+	// Crear una nueva Persona
+	app.post('/api/persona', Controller.setPersona);
+	// Modificar los datos de una Persona
+	app.put('/api/persona/:persona_id', Controller.updatePersona);
+	// Borrar una Persona
+	app.delete('/api/persona/:persona_id', Controller.removePersona);
+	// application 
+	app.get('*', function(req, res) {
+		res.sendfile('./angular/index.html'); // Carga única de la vista
+	});
+};
+ */
+
+/*
+ * var Persona = require('./modelo/persona');
+
+// Obtiene todos los objetos Persona de la base de datos
+exports.getPersona = function (req, res){
+	Persona.find(
+		function(err, persona) {
+			if (err)
+				res.send(err)
+					res.json(persona); // devuelve todas las Personas en JSON		
+				}
+			);
+}
+
+// Guarda un objeto Persona en base de datos
+exports.setPersona = function(req, res) {
+
+		// Creo el objeto Persona
+		Persona.create(
+			{nombre : req.body.nombre,apellido: req.body.apellido, edad: req.body.edad}, 
+			function(err, persona) {
+				if (err)
+					res.send(err);
+				// Obtine y devuelve todas las personas tras crear una de ellas
+				Persona.find(function(err, persona) {
+				 	if (err)
+				 		res.send(err)
+				 	res.json(persona);
+				});
+			});
+
+	}
+
+// Modificamos un objeto Persona de la base de datos
+exports.updatePersona = function(req, res){
+	Persona.update( {_id : req.params.persona_id},
+					{$set:{nombre : req.body.nombre,apellido: req.body.apellido, edad: req.body.edad}}, 
+					function(err, persona) {
+						if (err)
+							res.send(err);
+				// Obtine y devuelve todas las personas tras crear una de ellas
+				Persona.find(function(err, persona) {
+				 	if (err)
+				 		res.send(err)
+				 	res.json(persona);
+				});
+			});
+	}
+
+// Elimino un objeto Persona de la base de Datos
+exports.removePersona = function(req, res) {
+	Persona.remove({_id : req.params.persona_id}, function(err, persona) {
+		if (err)
+			res.send(err);
+			// Obtine y devuelve todas las personas tras borrar una de ellas
+			Persona.find(function(err, persona) {
+				if (err)
+					res.send(err)
+				res.json(persona);
+			});
+		});
+}                                                                                                                                      
+ */

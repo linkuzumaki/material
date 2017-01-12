@@ -1,0 +1,42 @@
+angular.module('app.service2', [])
+        .service('usuariodb', ['$window', '$http', '$mdToast', function ($window, $http, $mdToast) {
+
+        this.guardarUsuario = function(data){
+
+            console.log(data);
+
+                $http.post('/usuario', ({
+                    nombre:data.Nombre,
+                    apellido:data.Apellido,
+                    celular:data.Celular,
+                    telefono:data.Telefono,
+                    tipo:data.Tipo,
+                    contacto:data.Contacto,
+                    nContacto:data.nContacto,
+                    oficio:data.Oficio,
+                    organizacion:'',
+                    tipo:data.Roles,
+                    valor:data.Roles,
+                    correo:data.Correo,
+                    password:data.Password,
+                    login:data.Login,
+                    fechaCreacion: new Date(),
+                    activo: '0',
+                    fecha: new Date(),
+                    usuario: ''
+                })) .then(function(){
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('guardarUsuario')
+                            .hideDelay(1000)
+                            .position('top rigth')
+                    );
+                })
+                    .catch (function(exception) {
+                        console.log(exception);
+                    })
+        }
+
+
+
+        }])

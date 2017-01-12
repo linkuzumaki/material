@@ -1,0 +1,119 @@
+<md-content class="contenedor" ng-controller="perfilController">
+    <div layout="row">
+        <md-card style="z-index: 1" flex="50">
+            <md-toolbar ng-if="true">
+                <div class="md-toolbar-tools">
+                    <h3>
+                        <span>Usuarios</span>
+                    </h3>
+                </div>
+            </md-toolbar>
+            <div layout="column" style="margin-bottom: 10px;">
+                <md-list style="padding-left: 10px;">
+                    <md-list-item ng-repeat="person in people" class="noright" ng-model="persona">
+                        <img alt="{{ person.name}}" ng-src="{{ person.img}}" class="md-avatar">
+                        <p  ng-model="person.name">{{ person.name}}</p>
+                        <md-button class="md-icon-button" ng-click="eliminaruser($index)"> <i class="material-icons">delete forever</i></md-button>
+                        <md-button class="md-icon-button" ng-click="Editar(person)"> <i class="material-icons">mode_edit</i></md-button>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-card>
+        <md-card  style="z-index: 1" flex="50" ng-controller="usuarioController">
+            <md-toolbar ng-if="true">
+                <div class="md-toolbar-tools">
+                    <h3>
+                        <span>{{opcion}}</span>
+                    </h3>
+                </div>
+            </md-toolbar>
+            <div layout="column" layout-align="space-around stretch" style="padding: 20px;">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Nombre</label>
+                        <input ng-model="user.Nombre">
+                    </md-input-container>
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Apellido</label>
+                        <input ng-model="user.Apellido">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Celular</label>
+                        <input ng-model="user.Celular">
+                    </md-input-container>
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Telefono Secundario</label>
+                        <input ng-model="user.Telefono">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Tipo de Usuario</label>
+                        <input ng-model="user.Tipo">                        
+                    </md-input-container>                    
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Oficio</label>
+                        <input ng-model="user.Oficio">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    
+                </div>
+                <div layout-gt-sm="row">                    
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Contacto Emergencia</label>
+                        <input ng-model="user.Contacto">
+                    </md-input-container>
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Numero contacto</label>
+                        <input ng-model="user.nContacto">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Organización</label>
+                        <input ng-model="user.Organizacion">
+                    </md-input-container>
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Roles</label>
+                        <input ng-model="user.Roles">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Correo Electronico</label>
+                        <input ng-model="user.Correo">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Usuario</label>
+                        <input ng-model="user.Login">
+                    </md-input-container>
+                    
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Password</label>
+                        <input ng-model="user.Password">
+                    </md-input-container>
+                </div>
+            </div>
+            <md-card-action>
+                <md-button ng-click="guardarUsuario()">Guardar</md-button>
+            </md-card-action>
+        </md-card>        
+    </div>
+</md-content>

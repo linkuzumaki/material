@@ -1,0 +1,73 @@
+angular.module('app.service2', [])
+        .service('usuariodb', ['$window', '$http', '$mdToast','$q', function ($window, $http, $mdToast,$q) {
+
+            this.guardarUsuario = function (data) {
+                console.log(data);
+                $http.post('/Usuario', ({                    
+                    nombre: data.Nombre,
+                    apellido: data.Apellido,
+                    celular: data.Celular,
+                    telefono: data.Telefono,
+                    tipo: data.Tipo,
+                    oficio: data.Oficio,
+                    contacto: data.Contacto,
+                    nContacto: data.nContacto,
+                    organizacion: data.Organizacion,
+                    rol: data.Rol,
+                    correo: data.Correo,
+                    login: data.Login,
+                    password: data.Password,
+                    fechaCreacion: new Date(),
+                    activo: '0',
+                    fechaModificacion: new Date()
+
+                })).then(function () {
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('guardarUsuario')
+                            .hideDelay(1000)
+                            .position('top rigth')
+                    );
+                })
+                    .catch(function (exception) {
+                        console.log("service2"+exception);
+                    });
+            };
+            this.cargarListaUsuario = function (){
+                
+                var defered=$q.defer();
+                var promise=defered.promise;
+                
+                $http.get('/Usuario')
+                .then(function (data) {
+                    console.log(data)
+                    defered.resolve(data);
+                })
+                .catch(function (err) {
+                   defered.reject(err);
+                })
+              return promise;
+            };
+            this.cargarListaUsuarioID = function (){
+                $http.get('/usuario/:id',{ login: '*' }).then(function (response) {
+                    console.log("service2 record"+ response.data.records);
+                    console.log("service2 data"+ response.data);
+                    console.log("service2 response"+ response.toString());
+                    console.log("service2 usuario"+ response.usuario);
+                    console.log("service2 Usuario"+ response.Usuario);
+                    return response.data;
+                });
+                /*
+                $http.get('/usuario') //$http.get('/usuario/:id',{ login: '*' }) //$http.get('/usuario')  $http.get('/elemento/:id',{ idform: 'f1' })
+                    .then(function(response){
+                        console.log("service2 "+ response.data.records);
+                        return response.data.records;
+
+                    })
+                    .catch(function(error){
+                        console.log("service2 cargarListaUsuario"+ error);
+
+                    });
+                    */
+            };
+        }]);

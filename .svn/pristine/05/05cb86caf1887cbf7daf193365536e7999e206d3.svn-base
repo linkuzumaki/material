@@ -1,0 +1,115 @@
+angular.module('app.service2', [])
+        .service('usuariodb', ['$window', '$http', '$mdToast', function ($window, $http, $mdToast) {
+                
+                
+                
+                
+
+        this.guardarUsuario = function(data){
+
+<<<<<<< .mine
+            console.log(data);
+
+                $http.post('/usuario', ({
+||||||| .r26
+            console.log(data);
+                $http.post('/usuario');
+                $http.post('/usuario', ({
+=======
+            
+                $http.post('/usuario',({
+>>>>>>> .r28
+                    nombre:data.Nombre,
+                    apellido:data.Apellido,
+                    celular:data.Celular,
+                    telefono:data.Telefono,
+                    tipo:data.Tipo,
+                    contacto:data.Contacto,
+                    nContacto:data.nContacto,
+                    oficio:data.Oficio,
+                    organizacion:'',
+                    rTipo:data.Roles,
+                    rValor:data.Roles,
+                    correo:data.Correo,
+                    password:data.Password,
+                    login:data.Login,
+                    fechaCreacion: new Date(),
+                    activo: '0',
+                    fFecha: new Date(),
+                    fUsuario: ''
+                })).then(function(res){
+                    
+                    
+                    console.log(res);
+                    
+                }).catch(function(errr){
+                    console.log(errr);
+<<<<<<< .mine
+                })) .then(function(){
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('guardarUsuario')
+                            .hideDelay(1000)
+                            .position('top rigth')
+                    );
+                })
+                    .catch (function(exception) {
+                        console.log(exception);
+                    })
+        }
+||||||| .r26
+                });
+        }))
+            .then(function(){
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent('guardarUsuario')
+                        .hideDelay(1000)
+                        .position('top rigth')
+                );
+            })
+            .catch (function(exception) {
+                console.log(exception);
+            })
+=======
+                });
+        
+        };
+>>>>>>> .r28
+
+<<<<<<< .mine
+
+
+        }])
+||||||| .r26
+        };
+        }]);
+/*
+ *      nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        celular: req.body.celular,
+        telefono: req.body.telefono,
+        tipo: req.body.tipo,
+        contacto: req.body.contacto,
+        nContacto: req.body.nContacto,
+        oficio: req.body.oficio,
+        organizacion: req.body.organización,
+        roles: [{
+                tipo: req.body.tipo,
+                valor: req.body.valor
+            }],
+        correo: req.body.correo,
+        password: req.body.password,
+        login: req.body.login,
+        fechaCreacion: req.body.fechaCreacion,
+        activo: req.body.activo,
+        fechaModificacion: [{
+                fecha: req.body.fecha,
+                usuario: req.body.usuario
+            }]
+        });
+ */
+
+=======
+        }]);
+>>>>>>> .r28

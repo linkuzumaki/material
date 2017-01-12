@@ -1,0 +1,43 @@
+const  express = require('express'),
+        router = express.Router(),
+        Usuario = require('./model_Usuario');
+
+module.exports = function(app){
+    agregarUsuario = function(req,res){
+        var usuario = Usuario({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        celular: req.body.celular,
+        telefono: req.body.telefono,
+        tipo: req.body.tipo,
+        contacto: req.body.contacto,
+        nContacto: req.body.nContacto,
+        oficio: req.body.oficio,
+        organización: req.body.organización,
+        roles: [{
+                tipo: req.body.tipo,
+                valor: req.body.valor
+            }],
+        correo: req.body.correo,
+        password: req.body.password,
+        login: req.body.login,
+        fechaCreacion: req.body.fechaCreacion,
+        activo: req.body.activo,
+        fechaModificacion: [{
+                fecha: req.body.fecha,
+                usuario: req.body.usuario
+            }]
+        });
+        usuario.save(function(error){
+            if(error){
+                console.log('error al insertar '+error);
+            }else
+            {
+                console.log('datos guardados');
+                res.redirect('/index.html');
+            }
+        });
+    };
+    app.post('/usuario',agregarUsuario);
+};
+

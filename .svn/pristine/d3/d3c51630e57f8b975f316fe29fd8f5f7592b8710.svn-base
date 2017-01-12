@@ -1,0 +1,80 @@
+angular.module('app.controller2', [])
+
+        .controller('perfilController', ['$scope','$mdDialog','usuariodb',function ($scope,$mdDialog,usuariodb) {
+            $scope.opcion ="Nuevo";
+            $scope.message = 'Esta es la página de "Contacto", aquí podemos poner un formulario';
+            $scope.personanomb="nobre persona";
+            //$scope.lista =usuariodb.cargarListaUsuarioID();
+            $scope.people = [
+                {name: 'Janet Perkins', img: 'img/100-0.jpeg', newMessage: true, rut: '11.111.111-1'},
+                {name: 'Mary Johnson', img: 'img/100-1.jpeg', newMessage: false, rut: '22.222.222-2'},
+                {name: 'Peter Carlsson', img: 'img/100-2.jpeg', newMessage: false, rut: '33.333.333-3'}
+            ];
+            $scope.goToPerson = function (person, event) {
+                $mdDialog.show(
+                        $mdDialog.alert()
+                        .title('Navigating')
+                        .textContent('Inspect ' + person)
+                        .ariaLabel('Person inspect demo')
+                        .ok('ok!')
+                        .targetEvent(event)
+                        );
+            };
+            $scope.Eliminar = function(person, event, $index) {
+                $mdDialog.show(
+                        $mdDialog.confirm()
+                        .title('Eliminar Usuario')
+                        .textContent('¿Esta seguro de querer eliminar este Usuario?')
+                        .ariaLabel('Primary click demo')
+                        .ok('Eliminar!')
+                        .cancel('Cancelar')
+                        .targetEvent(event)
+                        );
+            };
+            $scope.user={}
+            $scope.Editar = function (id) {
+                console.log(id.name),
+                // $scope.personaje= $scope.people[index],
+                $scope.user.Nombre = id.name;
+                $scope.opcion = "Editar Usuario " + $scope.user.Nombre;
+            }
+            //$scope.lista =usuariodb.cargarListaUsuario();
+        }])
+        .controller('usuarioController', ['$scope','$mdDialog','usuariodb',function ($scope,$mdDialog,usuariodb) {
+                         
+               $scope.user.Nombre;
+               $scope.user.Apellido;
+               $scope.user.Celular;
+               $scope.user.Telefono;
+               $scope.user.Tipo;
+               $scope.user.Oficio;
+               $scope.user.Contacto;
+               $scope.user.nContacto;
+               $scope.user.Organizacion;
+               $scope.user.Rol;
+               $scope.user.Correo;
+               $scope.user.Login;
+               $scope.user.Password;
+
+
+               
+                $scope.guardarUsuario=function(){
+                    usuariodb.guardarUsuario($scope.user);
+                };
+            usuariodb.cargarListaUsuario().then(function(data){
+
+                $scope.ppllista=data.data;
+
+            })
+                $scope.verLista = function(){
+
+                    usuariodb.cargarListaUsuario().then(function(data){
+                        console.log('dentro del btn');
+                        $scope.ppllista=data.data;
+
+                    })
+                    
+                    
+                };
+                //$scope.lista =usuariodb.cargarListaUsuario();
+        }])

@@ -1,0 +1,6 @@
+angular.module('app.controller2', [])
+
+    .controller('perfilController', function($scope) {
+        $scope.message = 'Esta es la página de "Contacto", aquí podemos poner un formulario';
+    })
+;

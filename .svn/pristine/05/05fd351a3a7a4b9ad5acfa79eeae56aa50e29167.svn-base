@@ -1,0 +1,56 @@
+angular.module('app.controller2', [])
+
+        .controller('perfilController', function ($scope,$mdDialog) {
+            $scope.opcion ="Nuevo";
+            $scope.message = 'Esta es la página de "Contacto", aquí podemos poner un formulario';
+            $scope.people = [
+                {name: 'Janet Perkins', img: 'img/100-0.jpeg', newMessage: true, rut: '11.111.111-1'},
+                {name: 'Mary Johnson', img: 'img/100-1.jpeg', newMessage: false, rut: '22.222.222-2'},
+                {name: 'Peter Carlsson', img: 'img/100-2.jpeg', newMessage: false, rut: '33.333.333-3'}
+            ];
+            $scope.goToPerson = function (person, event) {
+                $mdDialog.show(
+                        $mdDialog.alert()
+                        .title('Navigating')
+                        .textContent('Inspect ' + person)
+                        .ariaLabel('Person inspect demo')
+                        .ok('ok!')
+                        .targetEvent(event)
+                        );
+            };
+            $scope.Eliminar = function(person, event) {
+                $mdDialog.show(
+                        $mdDialog.confirm()
+                        .title('Eliminar Usuario')
+                        .textContent('¿Esta seguro de querer eliminar este Usuario?')
+                        .ariaLabel('Primary click demo')
+                        .ok('Eliminar!')
+                        .cancel('Cancelar')
+                        .targetEvent(event)
+                        );
+            };
+            $scope.personanomb="nq"
+            console.log($scope.personanomb)
+
+            $scope.Editar = function (person, event) {
+                alert(event.target.id)
+                console.log($scope.persona);
+                $scope.opcion="Editar";
+                $scope.user = {
+                    Nombre:$scope.person.name,
+                    Apellido:$scope.person.rut,
+                    Celular:"",
+                    Telefono:"",
+                    TIpo:"",
+                    Contacto:"",
+                    nContacto:"",
+                    Oficio:"",
+                    Organización:"",
+                    Roles:"",
+                    Correo:"",
+                    password:"",
+                    Usuario:""
+                };
+            };
+        })
+        ;
