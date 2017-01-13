@@ -377,7 +377,7 @@ angular.module('app.controllers', [])
             idtitulo.style.color= $scope.modal_elementos.textConfig.textcolor;
         }
         $scope.vermongo=function(){
-          /*  $scope.impunts=[]
+           $scope.impunts=[]
             $scope.elementos_database=[];
             $scope.listita=[]
             dbelemento.mostrarall().then(function (data) {
@@ -388,14 +388,15 @@ angular.module('app.controllers', [])
                         angular.forEach(lista.elements, function (lstelement, index) {
                             $scope.lstelemento=lstelement.element
                             console.log( $scope.lstelemento)
+
                         })
                     })
-               // $scope.elementos_database=JSON.stringify($scope.listita,['idelement','element'])
-              //  console.log(  $scope.elementos_database)
+                $scope.elementos_database=JSON.stringify($scope.listita,['idelement','element'])
+                console.log(  $scope.elementos_database)
             })
-            */
 
-          dbelemento.obtneruno();
+
+
         };
         // guardar elementos
         $scope.saveEdicion=function(){

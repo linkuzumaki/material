@@ -10,7 +10,8 @@
      'app.controller2',
      'app.directive',
      'ngDialog',
-     'mdColorPicker','ngFileUpload'])
+     'mdColorPicker',
+     'ngFileUpload'])
 
      .config(function($mdThemingProvider) {
          $mdThemingProvider.theme('default')

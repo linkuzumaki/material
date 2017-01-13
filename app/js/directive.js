@@ -63,31 +63,25 @@ angular.module('app.directive', [])
                 if(idelemento==='img'){
                     $(copy).children('.element').attr("draggable","false")
                     $(copy).attr("style", "display:show;width: 200px;padding-left: 0px;padding-right: 0px;");
-
                 }
                 if(idelemento==='txtarea'){
                     $(copy).children('.element').attr("draggable","false")
                     $(copy).attr("style", "display:show;");
-
                 }
                 if(idelemento==='select'){
                     $(copy).children('.element').attr("draggable","false")
                     $(copy).attr("style", "display:show;");
-
                 }
                 if(idelemento==='texbox'){
                     $(copy).attr("style", "display:show;width: 100px;padding-top: 0px;padding-bottom: 0px;margin-top: 0px; " +
                         "margin-bottom: 0px;");
-
                 }
                 if(idelemento==='parrafos'){
                     $(copy).attr("style", "display:show;word-wrap: break-word");
-
                 }
                 if (idelemento==='check'){
                     $(copy).attr("style", "display:show;width:100px;padding-top: 0px;padding-bottom: 0px;margin-top: 0px; " +
                         "margin-bottom: 0px;");
-
                 }
                 if(idelemento==='boton'){
                     $(copy).attr("style", "display:show;width:150px;height:100px");
@@ -151,7 +145,6 @@ angular.module('app.directive', [])
                     onChange(scope);
                 });
             };
-
             element.bind('change', updateModel);
         }
     };
