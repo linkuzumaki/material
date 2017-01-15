@@ -15,8 +15,7 @@ var Elemento = new Schema({
             "required": true
         },
         "element": {
-            "type": "string",
-            "required": true
+            
         }
     }
 })

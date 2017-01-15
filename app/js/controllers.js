@@ -376,27 +376,22 @@ angular.module('app.controllers', [])
             idpadre.style.width=$scope.modal_elementos.largoelemento.width
             idtitulo.style.color= $scope.modal_elementos.textConfig.textcolor;
         }
-        $scope.vermongo=function(){
-          /*  $scope.impunts=[]
+        $scope.vermongo=function(elementodb){
+            $scope.impunts=[]
             $scope.elementos_database=[];
-            $scope.listita=[]
+            $scope.listita=[];
+			   $scope.lis={}
             dbelemento.mostrarall().then(function (data) {
                 $scope.listita=data.data;
-                $scope.lstelemento;
-
-                    angular.forEach( $scope.listita, function (lista, index) {
-                        angular.forEach(lista.elements, function (lstelement, index) {
-                            $scope.lstelemento=lstelement.element
-                            console.log( $scope.lstelemento)
-                        })
-                    })
-               // $scope.elementos_database=JSON.stringify($scope.listita,['idelement','element'])
-              //  console.log(  $scope.elementos_database)
-            })
-            */
-
-          dbelemento.obtneruno();
-        };
+	
+				$scope.listita.forEach(function(data){
+				
+					$('#verelmento').html(data.elements.element) 
+				});
+				
+        	});
+		
+		}
         // guardar elementos
         $scope.saveEdicion=function(){
             //obtner id  padre y abuelo del elemento

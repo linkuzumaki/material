@@ -39,6 +39,7 @@ var Usuario = new Schema({
     {
       "rTipo": "String",
       "rValor": "String"
+
     }
   ],
   "fechaModificacion": [

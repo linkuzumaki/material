@@ -165,17 +165,13 @@
                 </md-card-header-text>
                 <md-divider></md-divider>
                 <md-card-content>
-                    <md-button ng-click="vermongo()">ver dn</md-button>
-
                     <md-list>
-                        <md-list-item ng-repeat="dato in listita">
-                            <h2>{{dato.idform}}</h2>
-                            <div ng-repeat="elemento in dato">
-                                <div ng-model="elementodb">{{elemento.element}}</div>
-                            </div>
-
+                        <md-list-item ng-repeat="dato in list">
+                                <div>{{dato.idelement}}</div>
                         </md-list-item>
                     </md-list>
+					 <md-button ng-click="vermongo(elemento)">ver dn</md-button>
+					<div id="verelmento"></div>
                 </md-card-content>
             </md-card>
         </div>
