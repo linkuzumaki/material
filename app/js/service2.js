@@ -5,15 +5,15 @@ angular.module('app.service2', [])
                     console.log("service2 delete "+id);
                     $mdToast.show(
                         $mdToast.simple()
-                            .textContent('eliminarUsuario')
+                            .textContent('Usuario Eliminado')
                             .hideDelay(1000)
-                            .position('top rigth')
+                            .position('top left')
                     );
                 })
             };
             this.horaServidor = function(){
                 $http.get('/Usuario/hora').then(function(fecha){
-                    //console.log("fehca "+fecha.data);
+                    console.log("fehca "+fecha.data);
                     return fecha.data;
                 });
             };
@@ -36,9 +36,9 @@ angular.module('app.service2', [])
                 ).then(function () {
                     $mdToast.show(
                         $mdToast.simple()
-                            .textContent('guardarUsuario')
+                            .textContent('Usuario Guardado')
                             .hideDelay(1000)
-                            .position('top rigth')
+                            .position('top left')
                     );
                 })
                     .catch(function (exception) {

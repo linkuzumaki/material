@@ -22,8 +22,12 @@ angular.module('app.routes', [])
                 templateUrl : 'templates/perfil.html',
                 controller  : 'perfilController'
             })
+            .when('/login', {
+                templateUrl : 'templates/login.html',
+                controller  : 'loginController'
+            })
             .otherwise({
-                redirectTo: '/inicio'
+                redirectTo: '/login'
             });
 
-    })
+    });

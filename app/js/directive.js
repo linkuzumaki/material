@@ -1,9 +1,9 @@
-var contador =0;
+var contador = 0;
 var borrarHtml = ("<button ng-controller='EventoElementCtrl' class='delete-button right'  style='float: right;color:black' id='borrar'>x</button>");
 var editarHtml = ("<button ng-controller='OpenModalCtrl' class='editar-button right'  style='float: right;color:black' id='editar'>/</button>");
 var agregarHtml = ("<button ng-controller='EventoElementCtrl' class='crear-button right'  style='float: right;color:black' id='editar'>+</button>");
-var todosElementos=[];
-angular.module('app.directive', [])
+var todosElementos = [];
+angular.module('app.directive',[])
 
 .directive('crearElementos',['$compile','storageLista',function($compile,storageLista){
 
@@ -29,7 +29,7 @@ angular.module('app.directive', [])
                 if (id === 'elemt4') {
                     idelemento = 'check';
                 }
-                if (id === 'elemt5') {
+                if (id === 'elemt5'){
                     idelemento = 'label';
                 }
                 if (id === 'elemt6') {
@@ -101,19 +101,17 @@ angular.module('app.directive', [])
                 }
 
                 $(copy).clone(true, true);// se confirma que los eventos y atributos esten activos
-                $(borrarHtml).appendTo(copy);//se agrega el btn eleminar
-                $(editarHtml).appendTo(copy);//se agrega el btn editar
-                $(agregarHtml).appendTo(copy);//se agrega el btn editar
-                $(copy).children('.delete-button').attr("id", "eliminar" + contador);
-                $(copy).children('.delete-button').attr("ng-click", "eliminar()");//se agrega el evento eliminar  despues de agregar el boton al clon
-                $(copy).children('.editar-button').attr("id", "editar" + contador);
-                $(copy).children('.editar-button').attr("ng-click", "abrirModal()");
-                $(copy).children('.crear-button').attr("id", "crear" + contador);
-                $(copy).children('.crear-button').attr("ng-click", "crear(e)");
+				var btn_action=('<div id="btn_action">'+
+											'<button ng-controller="EventoElementCtrl" class="delete-button right" '+
+													'ng-click="eliminar()"  style="float: right;color:black"'+ 'id="borrar'+contador+'">x</button>'+
+											'<button ng-controller="OpenModalCtrl" class="editar-button right"'+
+													'style="float: right;color:black" ng-click="abrirModal()"'+ 'id="editar'+contador+'">/</button>'+
+											'<button ng-controller="EventoElementCtrl" class="crear-button right"'+ 				'style="float: right;color:black" ng-click="crear(e)"'+ 						'id="crear'+contador+'">+</button>'+
+									'</div>');
 
-
+				
+                $(btn_action).appendTo(copy);//se agrega el btn eleminar
                 id=$(copy).attr("id")
-
                 angular.element(document.getElementById('fila110'))
                         .append($compile(copy)(scope));
 

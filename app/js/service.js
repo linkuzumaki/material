@@ -45,7 +45,6 @@ angular.module('app.service',[])
 
 
             $http.get('/elemento')
-
                 .then(function (response)  {
                     console.log(response.status)
                     defered.resolve(response)

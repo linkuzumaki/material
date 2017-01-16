@@ -1,9 +1,7 @@
 var contador = 0;
 var imgsave;
-const nb_form='Nombre Formulario';
+var nb_form = 'Nombre Formulario';
 angular.module('app.controllers', [])
-
-
     .controller('mainController', function ($scope) {
         $scope.message = 'Hola, Mundo!';
     })
@@ -18,17 +16,16 @@ angular.module('app.controllers', [])
     .controller('EventoElementCtrl', ['$scope', '$compile', function ($scope, $compile) {
         $scope.eliminar = function () {
             var id = event.target.id;
-            var idpadre = ($('#' + id).parent().attr('id'));
-            console.log('id del elemento a borrar : ' + idpadre);
-            var idhijo = $('#' + idpadre).children('.element').attr("id");
-            console.log('id del elemento a borrar : ' + idhijo);
-            var myEl = angular.element(document.querySelector('#' + idpadre));
+			var padre = $('#' + id).parent().attr("id");
+			var abuelo=$('#' +padre).parent().attr("id");  
+            var myEl = angular.element(document.querySelector('#' + abuelo));
             myEl.remove();
 
         };
         $scope.crear = function () {
             var id = event.target.id;// obtengo la id elemento del bar
-            var abuelo = $('#' + id).parent().attr("id");
+            var padre = $('#' + id).parent().attr("id");
+			var abuelo=$('#' +padre).parent().attr("id");
             var abueloclon = document.getElementById(abuelo); // id elemento
             var copyabuelo = $(abueloclon).clone(true);//se crea un clon  del elemento
             //se edita los atributos de objeto  clonado
@@ -91,37 +88,6 @@ angular.module('app.controllers', [])
 
         };
     }])
-    .controller('enviarCtrl',function ($scope, $http,$mdToast) {
-
-        $scope.registardatos = function() {
-            $http.post('/ejemplo',({nombre:$scope.nombre, apellido:$scope.apellido}))
-                .then(function () {
-                    $mdToast.show(
-                        $mdToast.simple()
-                            .textContent('dato guardado')
-                            .hideDelay(1000)
-                            .position('top right')
-                    );
-                    $scope.nombre="",
-                        $scope.apellido=""
-                })
-                .catch(function(err){
-                    console.log('Error: ' + err);
-                })
-        };
-
-        $scope.obtnertodosdatos=function(){
-
-            $http.get('/ejemplo')
-                .then(function (data) {
-                    console.log(data)
-                })
-                .catch(function (err) {
-                    console.log('Error: ' + err);
-                })
-
-        }
-    })
     .controller('OpenModalCtrl',['$scope','ngDialog','fileReader',"storageLista","$mdToast",'dbelemento','$timeout','$mdDialog','$http',function($scope,ngDialog,fileReader,storageLista,$mdToast,dbelemento,$timeout,$mdDialog,$http){
 
         $scope.myDate = new Date();
@@ -129,10 +95,8 @@ angular.module('app.controllers', [])
         $scope.usernew={};
         $scope.cambiojob = function () {
             $scope.usernew.name=$scope.user.name;
-            console.log($scope.usernew.name)
-        }
-
-
+            console.log($scope.usernew.name);
+        };
         $scope.users =[
             { id: 1, name: 'Scooby Doo' },
             { id: 2, name: 'Shaggy Rodgers' },
@@ -153,7 +117,13 @@ angular.module('app.controllers', [])
         };
         //abren el modal
         $scope.abrirModal=function() {
-            id_elemento = document.getElementById(event.target.id);
+            var id = event.target.id;// obtengo la id elemento del bar
+            var padre = $('#' + id).parent().attr("id");
+			var abuelo = $('#' + padre).parent().attr("id");
+			id_elemento= document.getElementById(abuelo)
+			console.log("al abrir : " +abuelo)
+			//id_elemento
+			
             $scope.dialog = ngDialog.open({
                 class: 'ngdialog-theme-default',
                 template: 'templates/modal.html',
@@ -239,6 +209,13 @@ angular.module('app.controllers', [])
             idabuelo    =   $scope.modal_elementos.idabuelo;
             idtitulo    =   $scope.modal_elementos.idtitulo;
             id          =   $($scope.modal_elementos.idpadre).attr('id');
+			
+			
+			console.log("id abuelo texto : "+idabuelo);
+			console.log("id titulo texto : "+idtitulo);
+			console.log("id id texto : "+id);
+			
+			
             idtitulo.style.color            =   $scope.modal_elementos.textConfig.textcolor;
             idtitulo.style.fontFamily       =   $scope.modal_elementos.familiaelegida.name;
             idtitulo.style.backgroundColor  =   $scope.modal_elementos.textConfig.colorfondo
@@ -246,16 +223,26 @@ angular.module('app.controllers', [])
             $($scope.modal_elementos.idpadre).attr('class',$scope.modal_elementos.anchoelegido.clase)
             $scope.posiciontext($scope.modal_elementos.posicion,id);
             //guardar elementos al mongodb
-
-
-            /* $scope.elementosavemongo.nombreformulario=$scope.nomb_formulario;
-             $scope.elementosavemongo.fechaformulario=$scope.fecha_formulario;
-             $scope.elementosavemongo.lugartrabajo=$scope.lugar_trabajo;
-             $scope.elementosavemongo.elementos={elemento:$scope.modal_elementos.idabuelo};
-             dbelemento.guardarelemento($scope.elementosavemongo);*/
-
-
-
+		
+                    $scope.elementosavemongo.nombreformularioid=$scope.valorinputForm;
+                    $scope.elementosavemongo.nombreformulario=$scope.valorinputForm;
+			
+					var botonera = document.getElementById('btn_action');
+					var btnera=$("#btn_action").attr(id);
+					var idabu = $(idabuelo).attr('id');
+			
+				 	var elemento = document.getElementById(idabu); // id elemento
+					var copy = $(elemento).clone(true)
+					var clon=$(copy).attr("id", "abueloclon" + contador);
+			console.log(clon)
+					var clonw=	$(clon).children(".botonera_action").remove();
+							
+			
+                    $scope.elementosavemongo.idelement=$(clonw).attr("id");
+                    $scope.elementosavemongo.elementos=$(clonw).html();
+					
+  					dbelemento.guardarelemento($scope.elementosavemongo);
+                   // dbelemento.updateelementos( $scope.elementosavemongo)
 
         }
         $scope.boton=function () {
@@ -382,17 +369,22 @@ angular.module('app.controllers', [])
             $scope.listita=[]
             dbelemento.mostrarall().then(function (data) {
                 $scope.listita=data.data;
-                $scope.lstelemento;
-
-                    angular.forEach( $scope.listita, function (lista, index) {
-                        angular.forEach(lista.elements, function (lstelement, index) {
-                            $scope.lstelemento=lstelement.element
-                            console.log( $scope.lstelemento)
-
-                        })
+                $scope.lstelement={};
+                $scope.lista_elemento=[];
+                 $scope.lista_elemento1={};
+                var lista=[]
+                    $scope.listita.forEach(function (lista) {
+                      
+                        $scope.lista_elemento=lista.elements;
+                        
+                        $("#listado_elemento").append($scope.lista_elemento.element);
+                        return $scope.lista_elemento;
+                        
                     })
-                $scope.elementos_database=JSON.stringify($scope.listita,['idelement','element'])
-                console.log(  $scope.elementos_database)
+               // $scope.elementos_database=JSON.stringify($scope.listita,['idelement','element'])
+               // console.log(  $scope.elementos_database)
+                console.log( $scope.lista_elemento)
+                
             })
 
 
@@ -402,11 +394,10 @@ angular.module('app.controllers', [])
         $scope.saveEdicion=function(){
             //obtner id  padre y abuelo del elemento
 
-            var abuelo_id = $(id_elemento).parent().attr("id");
-            console.log('abuelo:    '+abuelo_id)
-            $scope.id_abuelo=document.getElementById(abuelo_id)
-            var padre_id = $($scope.id_abuelo).children().attr('id');
-            $scope.id_padre=document.getElementById(padre_id)
+            var abuelo_id      =   id_elemento;
+			$scope.id_abuelo   =   document.getElementById(abuelo_id)
+			var padre_id       =   $(abuelo_id).children().attr('id');
+			$scope.id_padre    =   document.getElementById(padre_id)
 
 
             $scope.valorinputForm= document.getElementById("formulario_name").innerHTML;
@@ -426,23 +417,7 @@ angular.module('app.controllers', [])
             }else{
                 //guarda los cabios realizados
                 if ($($scope.id_padre).children('.texto').attr("class") === 'form-control texto') {
-
-                    console.log($($scope.id_abuelo).html())
-
-                    $scope.elementosavemongo.nombreformularioid=$scope.valorinputForm;
-                    $scope.elementosavemongo.nombreformulario=$scope.valorinputForm;
-                    $scope.elementosavemongo.idelement=$($scope.id_abuelo).attr("id");
-                    $scope.elementosavemongo.elementos=$($scope.id_abuelo).html();
-
-
-                   //$scope.datito= dbelemento.idgetelemento( $scope.elementosavemongo)
-                   // console.log($scope.datito)
-
-                           console.log('nombre formulario : '+$scope.elementosavemongo.nombreformulario)
-                    dbelemento.guardarelemento($scope.elementosavemongo);
-
-                   // dbelemento.updateelementos( $scope.elementosavemongo)
-
+              
                     $scope.texbox($scope.id_padre);
                 }
                 if ($($scope.id_abuelo).attr("class") === 'element boton grid ng-scope') {
@@ -485,11 +460,13 @@ angular.module('app.controllers', [])
 
         //obtner id  padre y abuelo del elemento
 
-        var abuelo_id      =   $(id_elemento).parent().attr("id");
-        $scope.id_abuelo   =   document.getElementById(abuelo_id)
-        var padre_id       =   $($scope.id_abuelo).children().attr('id');
-        $scope.id_padre    =   document.getElementById(padre_id)
-
+		var abuelo_id      	= $(id_elemento).attr("id");
+        $scope.id_abuelo    =   document.getElementById(abuelo_id)
+		 var padre_id       =   $($scope.id_abuelo).children().attr('id');
+        $scope.id_padre    	=   document.getElementById(padre_id)
+      console.log("abuelo : "+abuelo_id)
+	
+		
         //obtner la clase estilo elementos padre y abuelo
 
         $scope.class_padre=$($scope.id_padre).attr('class');

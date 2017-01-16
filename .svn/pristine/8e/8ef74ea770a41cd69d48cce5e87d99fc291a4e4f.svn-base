@@ -1,0 +1,31 @@
+<md-content class="contenedor" ng-controller="loginController">
+    <div layout="row" layout-align="center center" layout-xs="column">
+        <div flex="100"  flex-gt-sm="50">
+            <md-card  style="z-index: 1">
+            <md-toolbar ng-if="true">
+                <div class="md-toolbar-tools">
+                    <h3>
+                        <span>Ingreso Sistema</span>
+                    </h3>
+                </div>
+            </md-toolbar>
+            <div layout="column" layout-align="space-around stretch" style="padding: 20px;">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Usuario</label>
+                        <input ng-model="login.usuario">
+                    </md-input-container>
+                    <md-input-container class="md-block margin-left-30" flex-gt-sm>
+                        <label>Password</label>
+                        <input type="password" ng-model="login.password">
+                    </md-input-container>
+                </div>
+            </div>
+            <md-card-action>
+                <md-button ng-click="autentificar()">Entrar</md-button>
+                <md-button ng-click="limpiarCampos()">Limpiar Campos</md-button>
+            </md-card-action>            
+        </md-card>
+        </div>
+    </div>
+</md-content>

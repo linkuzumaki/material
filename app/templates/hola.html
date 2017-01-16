@@ -3,4 +3,9 @@
         <h1>Contacto</h1>
         <p>{{ message }}</p>
     </div>
+	<div id="btn_action">
+		<button ng-controller='EventoElementCtrl' class='delete-button right' ng-click="eliminar()"  style='float: right;color:black' id='borrar'>x</button>
+		<button ng-controller='OpenModalCtrl' class='editar-button right'  style='float: right;color:black' ng-click="abrirModal()" id='editar'>/</button>
+		<button ng-controller='EventoElementCtrl' class='crear-button right'  style='float: right;color:black' ng-click="crear(e)" id='editar'>+</button>
+	</div>
 </md-content>

@@ -33,9 +33,12 @@ angular.module('app.controller2', [])
                 $scope.usuario={};
                 //$scope.user = {};
                 $scope.FechaServidor = function(data,event){
+                    return usuariodb.horaServidor();
+                    /*
                     usuariodb.horaServidor().then(function(datos){
+                            console.log(datos);
                             return datos;
-                        });
+                        });*/
                 };
                 $scope.Eliminar = function (person, event, $index) {
                     $mdDialog.show(
@@ -84,7 +87,7 @@ angular.module('app.controller2', [])
                     } else
                     {
                         console.log("no inserto");
-                    };
+                    }
                 };
                 $scope.Editar = function (id) {
                     console.log("editar controlador "+id);
@@ -184,4 +187,4 @@ angular.module('app.controller2', [])
                     $scope.opcion = "Nuevo";
                     $scope.actualizar=false;
                 };
-            }])
+            }]);

@@ -6,8 +6,10 @@
      'app.routes',
      'app.service',
      'app.service2',
+     'app.serviceLogin',                  
      'app.controllers',
      'app.controller2',
+     'app.controllerLogin',
      'app.directive',
      'ngDialog',
      'mdColorPicker',
@@ -21,6 +23,6 @@
             })
              .accentPalette('blue',{
                  'default':'A200'
-             })
+             });
 
      });
