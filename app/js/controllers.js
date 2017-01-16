@@ -233,8 +233,11 @@ angular.module('app.controllers', [])
 			
 				 	var elemento = document.getElementById(idabu); // id elemento
 					var copy = $(elemento).clone(true)
+					
+					
+					
 					var clon=$(copy).attr("id", "abueloclon" + contador);
-			console.log(clon)
+					console.log(clon)
 					var clonw=	$(clon).children(".botonera_action").remove();
 							
 			
@@ -363,12 +366,19 @@ angular.module('app.controllers', [])
             idpadre.style.width=$scope.modal_elementos.largoelemento.width
             idtitulo.style.color= $scope.modal_elementos.textConfig.textcolor;
         }
+<<<<<<< HEAD
         $scope.vermongo=function(){
            $scope.impunts=[]
+=======
+        $scope.vermongo=function(elementodb){
+            $scope.impunts=[]
+>>>>>>> origin/master
             $scope.elementos_database=[];
-            $scope.listita=[]
+            $scope.listita=[];
+			   $scope.lis={}
             dbelemento.mostrarall().then(function (data) {
                 $scope.listita=data.data;
+<<<<<<< HEAD
                 $scope.lstelement={};
                 $scope.lista_elemento=[];
                  $scope.lista_elemento1={};
@@ -390,6 +400,17 @@ angular.module('app.controllers', [])
 
 
         };
+=======
+	
+				$scope.listita.forEach(function(data){
+				
+					$('#verelmento').html(data.elements.element) 
+				});
+				
+        	});
+		
+		}
+>>>>>>> origin/master
         // guardar elementos
         $scope.saveEdicion=function(){
             //obtner id  padre y abuelo del elemento
