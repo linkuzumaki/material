@@ -24,8 +24,13 @@ routes =require('./model/usuarioCtrl.js')(app);
 mongoose.Promise=global.Promise;
 mongoose.connect('mongodb://localhost:27017/proyectodb', function(err, database) {
     if (err) return console.log('erro de conexion bd'+err);
+<<<<<<< HEAD
     var db = database;
     var puerto = 3037;
+=======
+    db = database;
+    var puerto = 3038;
+>>>>>>> origin/master
     app.listen(puerto,function (){
         console.log('listening on'+ puerto);
     });
