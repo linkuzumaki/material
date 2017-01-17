@@ -1,0 +1,166 @@
+const  express = require('express'),
+        router = express.Router(),
+        Usuario = require('./model_Usuario');
+
+module.exports = function(app){
+    eliminar = function(req,res){
+        var id = req.params.id;
+        Usuario.findByIdAndRemove(id).then(function(){
+            res.send("Usuario ELiminado");
+        }),function(error){
+            res.send("Usuario no eliminado "+error);
+        };
+    };
+    agregar = function(req,res){
+        var usuario = new Usuario(req.body);
+        console.log(usuario);
+        usuario.save().then(function(){
+            res.send("Ingresado correctamente");
+        }),
+        function(error){
+            res.status(500).send('error ingresar '+error);
+        };
+    };
+    cargarLista = function(req,res){
+        Usuario.find().then(function(usuarios){
+            res.json(usuarios);
+        }),function(error){
+            res.status(500).send("error en cargar "+ error);
+        };
+    };
+    actualizar = function(req,res){
+        console.log("servidor "+req.body);
+        
+        Usuario.findByIdAndUpdate(req.params.id,{$set:req.body}).then(function(){
+            res.send("Usuario actualizado");
+        }),function(error){
+            res.status(500).send("Usuario no actualizado "+error);
+        };
+    };
+    obtenerHora = function(req,res){
+        var fecha = new Date();
+        res.send(fecha);
+    };
+    /*
+    agregarUsuario = function(req,res){
+        var usuario = Usuario({ 
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            celular: req.body.celular, 
+            telefono: req.body.telefono,
+            tipo: req.body.tipo,
+            oficio: req.body.oficio,
+            contacto: req.body.contacto,
+            nContacto: req.body.nContacto,
+            organizacion: req.body.organización,
+            rol: req.body.rol,
+            correo: req.body.correo,
+            login: req.body.login,
+            password: req.body.password,
+            fechaCreacion: req.body.fechaCreacion,
+            activo: req.body.activo,
+            fechaModificacion: req.body.fechaModificacion
+        });
+        /* 
+        var usuario = Usuario({
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        celular: req.body.celular,
+        telefono: req.body.telefono,
+        tipo: req.body.tipo,
+        contacto: req.body.contacto,
+        nContacto: req.body.nContacto,
+        oficio: req.body.oficio,
+        organización: req.body.organización,
+        roles: [{
+                rTipo: req.body.tipo,
+                rValor: req.body.valor
+            }],
+        correo: req.body.correo,
+        password: req.body.password,
+        login: req.body.login,
+        fechaCreacion: req.body.fechaCreacion,
+        activo: req.body.activo,
+        fechaModificacion: [{
+                fFecha: req.body.fecha,
+                fUsuario: req.body.usuario
+            }]
+        });
+        
+        usuario.save(function(error){
+            if(error){
+                //console.log('error al insertar '+error);
+            }else
+            {
+                //console.log('datos guardados');
+                res.redirect('/index.html');
+            }
+        });
+    };
+    
+    cargarListaUsuario = function(req,res){
+        //console.log("GET_/Usuario");
+        return Usuario.find(function(error,data){
+            if(!error){
+                return res.json(data);
+            }else{
+                //console.log("usuarioCtrl cargarListaUsuario"+error);
+         
+            }
+        });
+    };
+    cargarListaUsuarioID = function(reg,res){
+        //console.log("GET_/Usuario");
+        return Usuario.find(function(error,data){
+            if(!error){
+                //console.log("usuarioctrl data"+ data);
+                return res.send(data);
+            }else{
+                //console.log("usuarioCtrl cargarListaUsuario"+error); 
+      
+            }
+        });
+    };
+    eliminarUsuario = function(req,res){
+        return Usuario.remove({
+            login:req.params.id
+        },function(error,data){
+            if(!error){
+                return res.json({mensaje:'eliminado'});
+            }else{
+                console.log("usuariocrtl " + error);
+                return res.send(error);
+            }
+        });
+    };
+    actualizarUsuario = function(req,res){
+        console.log('parametros '+req.params.id);
+        console.log('nombre '+req.body.nombre);
+        Usuario.find({
+            login:req.params.id
+        },function(error,usuario){
+            if(error){
+                //console.log('error al insertar '+error);
+            } else
+            {
+                console.log(usuario);
+                usuario[0].nombre = req.body.nombre;
+                usuario[0].save(function (error) {
+                    if (error) {
+                        console.log('error al insertar '+error);
+                    } else
+                    {
+                        //console.log('datos guardados');
+                        //res.redirect('/index.html'); 
+                    }
+                });
+            }
+        });
+    };*/
+    app.post('/Usuario/actualizar/:id',actualizar);
+    app.post('/Usuario/agregar',agregar);
+    app.get('/Usuario/hora',obtenerHora);
+    app.post('/Usuario/eliminar/:id',eliminar);
+    app.get('/Usuario/cargarLista/', cargarLista);
+    //app.get('/Usuario/cargarUsuario/:id',cargarListaUsuarioID);
+};

@@ -27,7 +27,7 @@ angular.module('app.routes', [])
                 controller  : 'loginController'
             })
             .otherwise({
-                redirectTo: '/login'
+                redirectTo: '/inicio'
             });
 
     });

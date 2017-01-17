@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+app/js/controllers.js
+*.js
+app/templates/main.html
+*.js
+*.js
+app/js/service.Login.js
+*.html
